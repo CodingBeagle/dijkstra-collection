@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dijkstra's EWD Papers — Highlights for the Modern Programmer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap');
+
+  :root {
+    --bg: #faf8f4;
+    --bg-card: #ffffff;
+    --text: #2a2520;
+    --text-muted: #7a7168;
+    --accent: #8b4513;
+    --accent-light: #c4956a;
+    --border: #e8e0d4;
+    --highlight: #fff8e7;
+    --tag-bg: #f0e8dc;
+    --shadow: 0 2px 20px rgba(42, 37, 32, 0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 17px;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 64px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.6em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  header .subtitle {
+    font-size: 1.05em;
+    color: var(--text-muted);
+    font-weight: 300;
+    font-style: italic;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  header .years {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8em;
+    color: var(--accent-light);
+    margin-top: 12px;
+    letter-spacing: 0.15em;
+  }
+
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+
+  .section-intro {
+    color: var(--text-muted);
+    font-size: 0.95em;
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+
+  .entry {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .entry:hover {
+    box-shadow: 0 4px 30px rgba(42, 37, 32, 0.1);
+  }
+
+  .entry-source {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72em;
+    color: var(--accent);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  .entry-source a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent-light);
+  }
+
+  .entry-source a:hover {
+    border-bottom-style: solid;
+  }
+
+  .entry-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05em;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .entry blockquote {
+    border-left: 3px solid var(--accent-light);
+    padding: 12px 20px;
+    margin: 16px 0;
+    background: var(--highlight);
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+    font-size: 0.97em;
+    line-height: 1.65;
+  }
+
+  .entry .commentary {
+    font-size: 0.93em;
+    color: var(--text-muted);
+    margin-top: 14px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .entry .commentary strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65em;
+    background: var(--tag-bg);
+    color: var(--text-muted);
+    padding: 3px 10px;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .divider {
+    text-align: center;
+    margin: 48px 0;
+    color: var(--accent-light);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.4em;
+    letter-spacing: 0.3em;
+  }
+
+  footer {
+    text-align: center;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.85em;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.9em; }
+    .entry { padding: 20px 22px; }
+    .container { padding: 36px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Dijkstra for the<br>Modern Programmer</h1>
+  <div class="subtitle">A curated selection of points from the EWD papers that remain stubbornly relevant to software engineering today</div>
+  <div class="years">EWD 249 — EWD 1305 · 1968–2001</div>
+</header>
+
+<!-- SECTION 1 -->
+<div class="section">
+  <div class="section-title">I. On the Craft & Its Pretensions</div>
+  <div class="section-intro">Dijkstra's most persistent theme: the field's refusal to treat programming as the intellectually demanding activity it actually is.</div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD10xx/EWD1036.html">EWD 1036</a> · "On the cruelty of really teaching computing science" (1988)</div>
+    <div class="entry-title">Software Engineering: The Doomed Discipline</div>
+    <blockquote>Software engineering, of course, presents itself as another worthy cause, but that is eyewash: if you carefully read its literature and analyse what its devotees actually do, you will discover that software engineering has accepted as its charter "How to program if you cannot."</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> Replace "software engineering" with any sufficiently buzzword-laden methodology — SAFe, certain interpretations of Agile, the latest framework-of-the-month — and the observation holds. The search for processes that let you bypass the difficulty of thinking clearly about programs has never stopped.</div>
+    <div class="tags"><span class="tag">methodology</span><span class="tag">industry</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD13xx/EWD1305.html">EWD 1305</a> · "Answers to questions from students of Software Engineering" (2000)</div>
+    <div class="entry-title">Quacks and Charlatans</div>
+    <blockquote>The required techniques of effective reasoning are pretty formal, but as long as programming is done by people that don't master them, the software crisis will remain with us and will be considered an incurable disease. And you know what incurable diseases do: they invite the quacks and charlatans in, who in this case take the form of Software Engineering gurus.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The guru economy is alive and well. Conference talks, Twitter threads, and Medium posts promising that one weird trick will fix your architecture. The "incurable disease" framing is devastating — the industry treats software difficulty as something to be managed around rather than understood.</div>
+    <div class="tags"><span class="tag">industry</span><span class="tag">education</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD13xx/EWD1305.html">EWD 1305</a> · "Answers to questions from students of Software Engineering" (2000)</div>
+    <div class="entry-title">What the University Owes</div>
+    <blockquote>It is not the task of the University to offer what society asks for, but to give what society needs.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> CS curricula that chase industry trends — teaching the hot framework of the year rather than foundations — are doing exactly what Dijkstra warned against. The students who learn React but not recursion, Docker but not discrete mathematics.</div>
+    <div class="tags"><span class="tag">education</span></div>
+  </div>
+</div>
+
+<div class="divider">· · ·</div>
+
+<!-- SECTION 2 -->
+<div class="section">
+  <div class="section-title">II. On Measuring the Wrong Things</div>
+  <div class="section-intro">His war against productivity metrics that actively make software worse.</div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD10xx/EWD1036.html">EWD 1036</a> · "On the cruelty of really teaching computing science" (1988)</div>
+    <div class="entry-title">Lines Spent, Not Lines Produced</div>
+    <blockquote>My point today is that, if we wish to count lines of code, we should not regard them as "lines produced" but as "lines spent": the current conventional wisdom is so foolish as to book that count on the wrong side of the ledger.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> GitHub contribution graphs. Pull request size as a signal of productivity. AI coding tools measured by how many lines they generate. The incentive structure hasn't changed — we still reward volume over thought, even though a deletion is often worth more than an addition.</div>
+    <div class="tags"><span class="tag">metrics</span><span class="tag">productivity</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://cs.utexas.edu/users/EWD/transcriptions/EWD04xx/EWD469.html">EWD 469</a> · "Programming methodologies, their objectives and their nature"</div>
+    <div class="entry-title">The Programmer Produces Solutions, Not Programs</div>
+    <blockquote>The programmer is not supposed to produce "programs", he is supposed to produce solutions, and the program he writes is only a carrier for that solution, and the more unnecessary lines of code he uses, the poorer his solution.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> This is the corrective to every enterprise codebase that grew not because the problem demanded it, but because the organisation rewarded output over clarity. The program is not the point. The solution is the point.</div>
+    <div class="tags"><span class="tag">metrics</span><span class="tag">design</span></div>
+  </div>
+</div>
+
+<div class="divider">· · ·</div>
+
+<!-- SECTION 3 -->
+<div class="section">
+  <div class="section-title">III. On Simplicity & Complexity</div>
+  <div class="section-intro">Dijkstra's most philosophically rich theme: the economics and politics of why simplicity loses.</div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD896.html">EWD 896</a> · "On the nature of Computing Science" (1984)</div>
+    <div class="entry-title">Complexity Sells Better</div>
+    <blockquote>Simplicity is a great virtue but it requires hard work to achieve it and education to appreciate it. And to make matters worse: complexity sells better.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The most concise diagnosis of why software architecture keeps getting more complicated. Kubernetes, microservices for a team of three, distributed systems that don't need to be distributed. The complex solution is easier to sell because it <em>looks</em> like more work was done.</div>
+    <div class="tags"><span class="tag">simplicity</span><span class="tag">industry</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD12xx/EWD1243a.html">EWD 1243a</a> · "The next fifty years" (1996)</div>
+    <div class="entry-title">The Secret Society</div>
+    <blockquote>It is time to unmask the computing community as a Secret Society for the Creation and Preservation of Artificial Complexity.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> Perhaps the single most devastating sentence Dijkstra ever wrote about the industry. The JavaScript toolchain. The Java enterprise stack. The cloud infrastructure meta-game. All examples of artificial complexity that the community not only tolerates but actively defends.</div>
+    <div class="tags"><span class="tag">simplicity</span><span class="tag">industry</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD12xx/EWD1243a.html">EWD 1243a</a> · "The next fifty years" (1996)</div>
+    <div class="entry-title">Poor Quality Makes Software Expensive</div>
+    <blockquote>One of the reasons why the expression "software industry" can be so misleading is that a major analogy with manufacturing fails to hold: in software, it is often the poor quality of the "product" that makes it so expensive to make!</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The entire category of "tech debt" is a consequence of this observation. We spend enormous effort maintaining bad software, then conclude that software is inherently expensive to maintain. The causality runs the other way.</div>
+    <div class="tags"><span class="tag">quality</span><span class="tag">economics</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD12xx/EWD1243a.html">EWD 1243a</a> · "The next fifty years" (1996)</div>
+    <div class="entry-title">Tools That Invite Complexity</div>
+    <blockquote>Design aids such as circuit simulators, protocol verifiers, algorithm animators, graphical aids for the hardware designers, and elaborate systems for version control: by their suggestion of power, they rather invite than discourage complexity.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The more powerful the tool, the more complexity it lets you get away with. IDEs that manage 500 files. CI/CD pipelines of baroque intricacy. The tool doesn't cause the complexity, but it makes the complexity survivable — and therefore persistent.</div>
+    <div class="tags"><span class="tag">tools</span><span class="tag">simplicity</span></div>
+  </div>
+</div>
+
+<div class="divider">· · ·</div>
+
+<!-- SECTION 4 -->
+<div class="section">
+  <div class="section-title">IV. On Testing, Correctness & Bugs</div>
+  <div class="section-intro">The distinction between showing something works and knowing it works.</div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/users/EWD/ewd02xx/EWD249.PDF">EWD 249</a> · "Notes On Structured Programming" (1970)</div>
+    <div class="entry-title">Testing Shows Presence, Not Absence</div>
+    <blockquote>Program testing can be used to show the presence of bugs, but never to show their absence!</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The most quoted line in all of Dijkstra. Every time someone says "all tests pass" as if that means the program is correct, this axiom is being violated. Test coverage is a ceiling, not a guarantee.</div>
+    <div class="tags"><span class="tag">testing</span><span class="tag">correctness</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD10xx/EWD1036.html">EWD 1036</a> · "On the cruelty of really teaching computing science" (1988)</div>
+    <div class="entry-title">The Alchemist's Purifications</div>
+    <blockquote>After quoting this well-publicized remark devoutly, the software engineer returns to the order of the day and continues to refine his testing strategies, just like the alchemist of yore, who continued to refine his chrysocosmic purifications.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> We all know testing can't prove correctness. We all nod sagely. Then we go back to writing more tests. Dijkstra's comparison to alchemy is barbed — it suggests not just inefficiency, but a kind of magical thinking that the profession refuses to give up.</div>
+    <div class="tags"><span class="tag">testing</span><span class="tag">methodology</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD10xx/EWD1036.html">EWD 1036</a> · "On the cruelty of really teaching computing science" (1988)</div>
+    <div class="entry-title">Bugs Are Errors</div>
+    <blockquote>We could, for instance, begin with cleaning up our language by no longer calling a bug a bug but by calling it an error. It is much more honest because it squarely puts the blame where it belongs, viz. with the programmer who made the error. The animistic metaphor of the bug that maliciously sneaked in while the programmer was not looking is intellectually dishonest.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> "A bug crept in." "We found a bug." The passive voice and the animistic framing are still everywhere. Dijkstra's point is moral as much as linguistic: if you call it an error, you own it. If you call it a bug, it's something that happened <em>to</em> you.</div>
+    <div class="tags"><span class="tag">language</span><span class="tag">responsibility</span></div>
+  </div>
+</div>
+
+<div class="divider">· · ·</div>
+
+<!-- SECTION 5 -->
+<div class="section">
+  <div class="section-title">V. On the Programmer's Mind</div>
+  <div class="section-intro">The relationship between the programmer and the limits of human cognition.</div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html">EWD 340</a> · "The Humble Programmer" (1972)</div>
+    <div class="entry-title">The Strictly Limited Skull</div>
+    <blockquote>The competent programmer is fully aware of the strictly limited size of his own skull; therefore he approaches the programming task in full humility, and among other things he avoids clever tricks like the plague.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> "Clever" code is still the enemy of maintainable code. The programmer who writes the most elegant one-liner is often creating future pain for the programmer who has to debug it at 3am. Humility about your own cognition is the prerequisite for writing code others can understand.</div>
+    <div class="tags"><span class="tag">humility</span><span class="tag">cognition</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html">EWD 340</a> · "The Humble Programmer" (1972)</div>
+    <div class="entry-title">The Thrill of Not Understanding</div>
+    <blockquote>It is my sad experience that this suggestion is repulsive to the average experienced programmer, who clearly derives a major part of his professional excitement from not quite understanding what he is doing. In this streamlined age, one of our most undernourished psychological needs is the craving for Black Magic and apparently the automatic computer can satisfy this need for the professional software engineer, who is secretly enthralled by the gigantic risks he takes in his daring irresponsibility.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The psychological insight here is extraordinary. There is genuine pleasure in the chaos of not-quite-understanding a complex system. Dijkstra identifies this as a <em>craving</em> — something we actively seek out. The cowboy programmer who deploys on Friday night. The architect who insists on the maximally complex solution. They're not just being careless; they're feeding a need.</div>
+    <div class="tags"><span class="tag">psychology</span><span class="tag">humility</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.virginia.edu/~evans/cs655/readings/ewd498.html">EWD 498</a> · "How do we tell truths that might hurt?" (1975)</div>
+    <div class="entry-title">Tools Shape Thought</div>
+    <blockquote>The tools we use have a profound (and devious!) influence on our thinking habits, and, therefore, on our thinking abilities.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> This applies to everything from your programming language to your IDE to your LLM coding assistant. The tool shapes what thoughts are easy to think and what thoughts are hard. If your framework makes it easy to add an abstraction layer and hard to remove one, guess which direction your architecture will drift.</div>
+    <div class="tags"><span class="tag">tools</span><span class="tag">cognition</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.virginia.edu/~evans/cs655/readings/ewd498.html">EWD 498</a> · "How do we tell truths that might hurt?" (1975)</div>
+    <div class="entry-title">The Blunt Axe</div>
+    <blockquote>About the use of language: it is impossible to sharpen a pencil with a blunt axe. It is equally vain to try to do it with ten blunt axes instead.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> More engineers on a bad codebase won't fix the codebase. More microservices won't fix a bad architecture. Scaling the wrong tool doesn't make it the right one — it just gives you more of the wrong thing. Brooks's mythical man-month, compressed into two sentences.</div>
+    <div class="tags"><span class="tag">tools</span><span class="tag">scaling</span></div>
+  </div>
+</div>
+
+<div class="divider">· · ·</div>
+
+<!-- SECTION 6 -->
+<div class="section">
+  <div class="section-title">VI. On Languages & Paradigms</div>
+  <div class="section-intro">Dijkstra's famously acerbic opinions on programming languages — some prophetic, some delightfully unfair.</div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.virginia.edu/~evans/cs655/readings/ewd498.html">EWD 498</a> · "How do we tell truths that might hurt?" (1975)</div>
+    <div class="entry-title">The Hit List</div>
+    <blockquote>FORTRAN — "the infantile disorder" — by now nearly 20 years old, is hopelessly inadequate for whatever computer application you have in mind today: it is now too clumsy, too risky, and too expensive to use.</blockquote>
+    <blockquote>PL/I — "the fatal disease" — belongs more to the problem set than to the solution set.</blockquote>
+    <blockquote>It is practically impossible to teach good programming to students that have had a prior exposure to BASIC: as potential programmers they are mentally mutilated beyond hope of regeneration.</blockquote>
+    <blockquote>The use of COBOL cripples the mind; its teaching should, therefore, be regarded as a criminal offence.</blockquote>
+    <blockquote>APL is a mistake, carried through to perfection. It is the language of the future for the programming techniques of the past: it creates a new generation of coding bums.</blockquote>
+    <div class="commentary"><strong>Why it's still fun:</strong> The whole of EWD 498 reads like a stand-up routine. The individual language verdicts are dated, but the underlying claim — that languages shape your ability to think, and bad languages cause permanent damage — remains provocative. Replace BASIC with "copy-pasting from Stack Overflow" and the spirit is alive.</div>
+    <div class="tags"><span class="tag">languages</span><span class="tag">polemic</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source">Attributed · widely quoted, disputed provenance</div>
+    <div class="entry-title">OOP and California</div>
+    <blockquote>Object-oriented programming is an exceptionally bad idea which could only have originated in California.</blockquote>
+    <div class="commentary"><strong>Why it's still fun:</strong> The attribution is contested (it may be apocryphal), but it's so perfectly Dijkstra that people want it to be his. His documented critique was deeper than this quip suggests — he objected to OOP because it entangles state with identity in ways that make formal reasoning harder. The one-liner just happens to be funnier than the formal argument.</div>
+    <div class="tags"><span class="tag">languages</span><span class="tag">polemic</span><span class="tag">disputed</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.virginia.edu/~evans/cs655/readings/ewd498.html">EWD 498</a> · "How do we tell truths that might hurt?" (1975)</div>
+    <div class="entry-title">The Vital Asset</div>
+    <blockquote>Besides a mathematical inclination, an exceptionally good mastery of one's native tongue is the most vital asset of a competent programmer.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> Naming things. Writing clear commit messages. Explaining your design in a PR description. Writing documentation that people can follow. The ability to use language precisely is a programming skill, not a soft skill.</div>
+    <div class="tags"><span class="tag">language</span><span class="tag">craft</span></div>
+  </div>
+</div>
+
+<div class="divider">· · ·</div>
+
+<!-- SECTION 7 -->
+<div class="section">
+  <div class="section-title">VII. On the Scale of the Challenge</div>
+  <div class="section-intro">Why programming is uniquely hard, and why that hardness keeps growing.</div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html">EWD 340</a> · "The Humble Programmer" (1972)</div>
+    <div class="entry-title">The Gigantic Problem</div>
+    <blockquote>As long as there were no machines, programming was no problem at all; when we had a few weak computers, programming became a mild problem, and now that we have gigantic computers, programming has become a gigantic problem.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> Cloud computing has made this exponentially worse since Dijkstra's day. Infinite scalability means infinite room for architectural errors to propagate. The constraint of limited hardware was, paradoxically, a constraint that kept complexity in check.</div>
+    <div class="tags"><span class="tag">complexity</span><span class="tag">scale</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD898.html">EWD 898</a> · "The threats to computing science" (1984)</div>
+    <div class="entry-title">The Core Challenge</div>
+    <blockquote>The key question is what mechanisms we can think of without getting lost in the complexities of our own making. Not getting lost in the complexities of our own making and preferably reaching that goal by learning how to avoid the introduction of those complexities in the first place.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> "Avoid the introduction of complexity in the first place" is the hardest advice to follow in software. It requires saying no to features, no to generalisation, no to the abstraction that <em>might</em> be useful later. Prevention over cure — but the industry rewards cure, because cure is visible.</div>
+    <div class="tags"><span class="tag">complexity</span><span class="tag">design</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD10xx/EWD1036.html">EWD 1036</a> · "On the cruelty of really teaching computing science" (1988)</div>
+    <div class="entry-title">The Digital Discontinuity</div>
+    <blockquote>In the discrete world of computing, there is no meaningful metric in which "small" changes and "small" effects go hand in hand, and there never will be.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> A single misplaced character in a configuration file can take down a production system. A one-line code change can introduce a security vulnerability. There is no "close enough" in software — it either works or it doesn't, and the distance between the two can be one character.</div>
+    <div class="tags"><span class="tag">correctness</span><span class="tag">fundamentals</span></div>
+  </div>
+</div>
+
+<div class="divider">· · ·</div>
+
+<!-- SECTION 8 -->
+<div class="section">
+  <div class="section-title">VIII. Personal & Biographical Gems</div>
+  <div class="section-intro">The human behind the formalism — moments of wit, vulnerability, and self-awareness.</div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html">EWD 340</a> · "The Humble Programmer" (1972)</div>
+    <div class="entry-title">The Marriage Certificate</div>
+    <blockquote>In 1957, I married and Dutch marriage rites require you to state your profession and I stated that I was a programmer. But the municipal authorities of the town of Amsterdam did not accept it on the grounds that there was no such profession. And, believe it or not, but under the heading "profession" my marriage act shows the ridiculous entry "theoretical physicist"!</blockquote>
+    <div class="commentary">There is something wonderful about the fact that the man who would win the Turing Award has a marriage certificate listing him as a theoretical physicist. The profession he helped invent didn't officially exist yet.</div>
+    <div class="tags"><span class="tag">biography</span><span class="tag">history</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD12xx/EWD1213.html">EWD 1213</a> · "Introducing a Course on Calculi" (1995)</div>
+    <div class="entry-title">Enough Immortality</div>
+    <blockquote>I mean, if 10 years from now, when you are doing something quick and dirty, you suddenly visualize that I am looking over your shoulders and say to yourself "Dijkstra would not have liked this", well that would be enough immortality for me.</blockquote>
+    <div class="commentary">Arguably his most human moment in the EWDs. He didn't want a statue or a theorem named after him. He wanted to be the voice in your head that makes you hesitate before taking the shortcut. And for many of us, he got his wish.</div>
+    <div class="tags"><span class="tag">biography</span><span class="tag">legacy</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source">VPRO documentary · "Denken als discipline" (2001)</div>
+    <div class="entry-title">Mozart and Beethoven</div>
+    <blockquote>There are very different programming styles. I tend to see them as Mozart versus Beethoven. When Mozart started to write, the composition was finished. He wrote the manuscript and it was 'aus einem Guss' (from one cast). In beautiful handwriting, too. Beethoven was a doubter and a struggler who started writing before he finished the composition and then glued corrections onto the page.</blockquote>
+    <div class="commentary">Dijkstra was clearly a Mozart-type himself — he would think through a program completely before writing it down. But there's a generosity in this quote that's unusual for him: he doesn't say Beethoven was wrong. He just notes the difference. Most of us are Beethovens, and maybe that's fine.</div>
+    <div class="tags"><span class="tag">craft</span><span class="tag">biography</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.virginia.edu/~evans/cs655/readings/ewd498.html">EWD 498</a> · "How do we tell truths that might hurt?" (1975)</div>
+    <div class="entry-title">The Postscript</div>
+    <blockquote>PS. If the conjecture "You would rather that I had not disturbed you by sending you this." is correct, you may add it to the list of uncomfortable truths.</blockquote>
+    <div class="commentary">The perfect ending to a document full of uncomfortable truths. Self-aware, recursive, and funny. Classic Dijkstra.</div>
+    <div class="tags"><span class="tag">wit</span></div>
+  </div>
+</div>
+
+<footer>
+  All EWD papers are available at the <a href="https://www.cs.utexas.edu/~EWD/">E.W. Dijkstra Archive</a> at the University of Texas at Austin.<br>
+  Compiled from papers spanning 1968–2001 · Edsger Wybe Dijkstra (1930–2002)
+</footer>
+
+</div>
+</body>
+</html>
