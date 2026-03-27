@@ -241,6 +241,46 @@
     <div class="commentary"><strong>Why it still bites:</strong> CS curricula that chase industry trends — teaching the hot framework of the year rather than foundations — are doing exactly what Dijkstra warned against. The students who learn React but not recursion, Docker but not discrete mathematics.</div>
     <div class="tags"><span class="tag">education</span></div>
   </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD07xx/EWD709.html">EWD 709</a> · "My hopes of computing science" (1979)</div>
+    <div class="entry-title">The Cult Factory</div>
+    <blockquote>Write a paper promising salvation, make it a 'structured' something or a 'virtual' something, or 'abstract', 'distributed' or 'higher-order' or 'applicative' and you can almost be certain of having started a new cult.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The adjectives have changed — now it's "serverless", "event-driven", "AI-native", "zero-trust", "cloud-native" — but the pattern is identical. A promising adjective, a salvation narrative, a cult of enthusiasts, and a trail of abandoned projects. Dijkstra identified the mechanism by which the industry manufactures and discards paradigms on roughly five-year cycles.</div>
+    <div class="tags"><span class="tag">industry</span><span class="tag">hype</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD898.html">EWD 898</a> · "The threats to computing science" (1984)</div>
+    <div class="entry-title">Management Replaces Discipline</div>
+    <blockquote>Software engineering, which, as time went by, has sought to replace intellectual discipline by management discipline to the extent that it has now accepted as its charter "How to program if you cannot."</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The shift from "can you think clearly?" to "do you follow the process?" is still the dominant response to software failure. When a project goes wrong, the reflex is to add more process — more standups, more review gates, more ceremonies — rather than to ask whether the people involved understand what they're building.</div>
+    <div class="tags"><span class="tag">methodology</span><span class="tag">industry</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD13xx/EWD1305.html">EWD 1305</a> · "Answers to questions from students of Software Engineering" (2000)</div>
+    <div class="entry-title">Programming and QA as Separate Groups</div>
+    <blockquote>Pure a posteriori verification denies you that whole-some influence and is therefore putting the cart before the horse, but that is exactly what happens in the software houses where "programming" and "quality assurance" are done by different groups. [Needless to say, those houses deliver without warranty.]</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The organisational split between "those who write code" and "those who verify code" is still standard practice. Dijkstra's objection isn't that verification is bad — it's that correctness must influence <em>design</em>, not just follow it. When QA is downstream, the bugs are baked in and the verification is archaeology.</div>
+    <div class="tags"><span class="tag">methodology</span><span class="tag">correctness</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD12xx/EWD1284.html">EWD 1284</a> · "Computing Science: Achievements and Challenges" (1999)</div>
+    <div class="entry-title">Industry Rejects Intellectual Demands</div>
+    <blockquote>Industry suffers from the managerial dogma that for the sake of stability and continuity, the company should be independent of the competence of individual employees. Hence industry rejects any methodological proposal that can be viewed as making intellectual demands on its work force.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> This is the root explanation for why the industry gravitates toward process over skill. If your methodology requires talented people, management considers it fragile. So methodologies are designed to be idiot-proof — and then only produce what idiots can produce. The deliberate de-skilling of programming is not an accident; it's policy.</div>
+    <div class="tags"><span class="tag">industry</span><span class="tag">management</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD12xx/EWD1284.html">EWD 1284</a> · "Computing Science: Achievements and Challenges" (1999)</div>
+    <div class="entry-title">Can Computing Science Save the Industry?</div>
+    <blockquote>The moral of this sad part of the story is that as long as computing science is not allowed to save the computer industry, we had better see to it that the computer industry does not kill computing science.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The tension between academic computing science and the software industry has only intensified. Industry funding shapes research agendas; industry hiring standards shape curricula; industry tooling shapes what students learn. If the industry doesn't want to hear that its methods are intellectually bankrupt, it has the economic power to ensure it never has to.</div>
+    <div class="tags"><span class="tag">industry</span><span class="tag">education</span></div>
+  </div>
 </div>
 
 <div class="divider">· · ·</div>
@@ -417,6 +457,70 @@
 
 <div class="divider">· · ·</div>
 
+<!-- SECTION 6b - NEW -->
+<div class="section">
+  <div class="section-title">VI½. On Natural Language, Elixirs & the Eternal Quest to Abolish the Programmer</div>
+  <div class="section-intro">The recurring dream of making programming easy by making it resemble ordinary speech — and the recurring reality that it cannot work. Especially resonant in the age of LLM-assisted "vibe coding".</div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD06xx/EWD667.html">EWD 667</a> · "On the foolishness of 'natural language programming'" (1978)</div>
+    <div class="entry-title">Formal Symbolism as Privilege, Not Burden</div>
+    <blockquote>The virtue of formal texts is that their manipulations, in order to be legitimate, need to satisfy only a few simple rules; they are, when you come to think of it, an amazingly effective tool for ruling out all sorts of nonsense that, when we use our native tongues, are almost impossible to avoid.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The entire essay is a time capsule that reads like it was written about LLM prompting. Dijkstra's argument is that formal notation isn't a regrettable barrier to entry — it's the <em>mechanism</em> by which we exclude nonsense. Remove the formalism, and you haven't made programming easier; you've made it harder to tell when you're wrong.</div>
+    <div class="tags"><span class="tag">natural language</span><span class="tag">formalism</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD06xx/EWD667.html">EWD 667</a> · "On the foolishness of 'natural language programming'" (1978)</div>
+    <div class="entry-title">Error Messages vs Wrong Answers</div>
+    <blockquote>Some people found error messages they couldn't ignore more annoying than wrong results, and, when judging the relative merits of programming languages, some still seem to equate "the ease of programming" with the ease of making undetected mistakes.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> This is the psychology behind every decision to suppress warnings, ignore linter output, use <code>any</code> types, or skip the type system entirely. The compiler telling you you're wrong feels like friction. The program silently doing the wrong thing feels like flow. Dijkstra saw this preference for comfortable wrongness over uncomfortable correctness as a deep human failing.</div>
+    <div class="tags"><span class="tag">psychology</span><span class="tag">correctness</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD06xx/EWD667.html">EWD 667</a> · "On the foolishness of 'natural language programming'" (1978)</div>
+    <div class="entry-title">The New Illiteracy</div>
+    <blockquote>As a result of the educational trend away from intellectual discipline, the last decades have shown in the Western world a sharp decline of people's mastery of their own language: many people that by the standards of a previous generation should know better, are no longer able to use their native tongue effectively, even for purposes for which it is pretty adequate.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The irony is doubled: if we can't even use natural language precisely for its <em>intended</em> purposes, the dream of using it for the much more demanding task of programming is even more absurd. Dijkstra calls this "The New Illiteracy" — and if it was bad in 1978, the decades since have not improved matters.</div>
+    <div class="tags"><span class="tag">natural language</span><span class="tag">education</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD898.html">EWD 898</a> · "The threats to computing science" (1984)</div>
+    <div class="entry-title">The Search for the Elixir</div>
+    <blockquote>In parallel we have the search for the Elixir. Here the programming problem is simply solved by doing away with the programmer. Wouldn't it be nice, for instance, to have programs in almost plain English, so that ordinary people could write and read them? People tend to forget that "doing away with the programmer" was COBOL's major original objective. Fifteen years later, 80% of the world's programming force was absorbed by the use of COBOL, a figure which gives us some idea of how effective that elixir has been.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> Every generation reinvents this dream. COBOL was supposed to let managers program. Visual Basic was supposed to let everyone program. Low-code platforms were supposed to democratise programming. Now LLMs are supposed to make programmers obsolete. Each time, the result is the same: the "ordinary people" either become programmers (and discover it's hard), or produce software that only works in demos.</div>
+    <div class="tags"><span class="tag">industry</span><span class="tag">natural language</span><span class="tag">hype</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD898.html">EWD 898</a> · "The threats to computing science" (1984)</div>
+    <div class="entry-title">Composing vs Scoring</div>
+    <blockquote>The public at large has very little feeling for the conceptual challenge implied by any non-trivial computer usage and tends to confuse — if I may use an analogy — the composing of a symphony with the writing of its score.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> The belief that "coding" is the hard part — and that removing the need to "code" therefore removes the difficulty — confuses notation with thought. A tool that writes your code for you hasn't solved the programming problem any more than a pen that writes musical notation has composed a symphony.</div>
+    <div class="tags"><span class="tag">industry</span><span class="tag">fundamentals</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD898.html">EWD 898</a> · "The threats to computing science" (1984)</div>
+    <div class="entry-title">Susie Mayer's Smile</div>
+    <blockquote>I still remember the advertisement in Datamation, 1968, in which a smiling Susie Mayer announces in full colour that she has solved all her programming problems by switching to PL/I. It was only too foreseeable that, a few years later, poor Susie Mayer would smile no longer.</blockquote>
+    <div class="commentary"><strong>Why it's still fun:</strong> Every era has its Susie Mayer ads. "We migrated to microservices and our deployment problems vanished!" "We adopted Kubernetes and everything runs smoothly now!" "We switched to AI-generated code and our velocity tripled!" Give it a few years.</div>
+    <div class="tags"><span class="tag">industry</span><span class="tag">hype</span><span class="tag">history</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD898.html">EWD 898</a> · "The threats to computing science" (1984)</div>
+    <div class="entry-title">Cleverness as Self-Deception</div>
+    <blockquote>We even use the complexity of our own constructs to impress ourselves. I have often been impressed by the cleverness of my own first solutions; invariably the joy of the subsequent discovery how to streamline the argument was tempered by a feeling of regret that my cleverness was unnecessary after all. It is a genuine sacrifice to part from one's ingenuities, no matter how contorted.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> A rare moment of Dijkstra confessing to the very sin he criticises in others. He felt the pull of cleverness too — the reluctance to simplify because it means admitting the clever version was wasted effort. This is the psychological root of over-engineering: we fall in love with the complexity we created.</div>
+    <div class="tags"><span class="tag">psychology</span><span class="tag">simplicity</span></div>
+  </div>
+</div>
+
+<div class="divider">· · ·</div>
+
 <!-- SECTION 7 -->
 <div class="section">
   <div class="section-title">VII. On the Scale of the Challenge</div>
@@ -444,6 +548,38 @@
     <blockquote>In the discrete world of computing, there is no meaningful metric in which "small" changes and "small" effects go hand in hand, and there never will be.</blockquote>
     <div class="commentary"><strong>Why it still bites:</strong> A single misplaced character in a configuration file can take down a production system. A one-line code change can introduce a security vulnerability. There is no "close enough" in software — it either works or it doesn't, and the distance between the two can be one character.</div>
     <div class="tags"><span class="tag">correctness</span><span class="tag">fundamentals</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html">EWD 340</a> · "The Humble Programmer" (1972)</div>
+    <div class="entry-title">The Electronic Industry Created the Problem</div>
+    <blockquote>In this sense the electronic industry has not solved a single problem, it has only created them, it has created the problem of using its products.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> AWS didn't solve your infrastructure problem; it gave you a catalogue of 200+ services that you now have to choose between. React didn't solve your UI problem; it gave you a component model whose combinatorial possibilities now escape your intellectual grip. Every powerful tool is also a new problem space.</div>
+    <div class="tags"><span class="tag">scale</span><span class="tag">industry</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html">EWD 340</a> · "The Humble Programmer" (1972)</div>
+    <div class="entry-title">Prevention Is Cheaper Than Debugging</div>
+    <blockquote>If you want more effective programmers, you will discover that they should not waste their time debugging, they should not introduce the bugs to start with.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> Fifty years on, debugging is still the dominant mode of software development. Write something, run it, see what breaks, fix it, repeat. Dijkstra's point isn't that debugging shouldn't exist — it's that an engineering culture <em>centred</em> on debugging has its priorities inverted. Every hour spent debugging is an hour that should have been spent thinking.</div>
+    <div class="tags"><span class="tag">correctness</span><span class="tag">craft</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD10xx/EWD1036.html">EWD 1036</a> · "On the cruelty of really teaching computing science" (1988)</div>
+    <div class="entry-title">The Foggy Crystal Ball</div>
+    <blockquote>So, if I look into my foggy crystal ball at the future of computing science education, I overwhelmingly see the depressing picture of "Business as usual". The universities will continue to lack the courage to teach hard science, they will continue to misguide the students, and each next stage of infantilization of the curriculum will be hailed as educational progress.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> Written in 1988 and accurate through to the present. He adds, with dark humour, that his crystal ball's predictions are "invariably gloomy and usually correct." The trend toward making CS education more "accessible" by removing the mathematics is exactly the infantilization he predicted.</div>
+    <div class="tags"><span class="tag">education</span><span class="tag">predictions</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD10xx/EWD1058.html">EWD 1058</a> · "In reply to comments" (1989)</div>
+    <div class="entry-title">Binary Search Is Too Hard</div>
+    <blockquote>The shocking fact is that the majority of computing professionals — be they academic or industrial — cannot be trusted to program things as simple as a binary search.</blockquote>
+    <div class="commentary"><strong>Why it still bites:</strong> Jon Bentley's famous observation that 90% of programmers can't write a correct binary search supports Dijkstra's claim. If even this — a problem with a clear spec, a well-understood algorithm, and a handful of lines — defeats the majority of professionals, what hope is there for systems of millions of lines? This is his strongest empirical argument for formal derivation.</div>
+    <div class="tags"><span class="tag">correctness</span><span class="tag">education</span></div>
   </div>
 </div>
 
@@ -479,6 +615,38 @@
   </div>
 
   <div class="entry">
+    <div class="entry-source"><a href="https://en.wikiquote.org/wiki/Edsger_W._Dijkstra">EWD 1175</a> · "The strengths of the academic enterprise" (1994)</div>
+    <div class="entry-title">On Team Spirit</div>
+    <blockquote>In the wake of the Cultural Revolution and now of the recession I observe a mounting pressure to co-operate and to promote "teamwork". For its anti-individualistic streak, such a drive is of course highly suspect; some people may not be so sensitive to it, but having seen the Hitlerjugend in action suffices for the rest of your life to be very wary of "team spirit". Very.</blockquote>
+    <div class="commentary">A quote that makes people uncomfortable in the age of agile and pair programming. Dijkstra grew up in the Netherlands during the German occupation — his mother was a mathematician, his father a chemist, and the family survived the Hunger Winter. When he says "team spirit" makes him wary, it isn't abstract. Whether or not you agree with his conclusion, the biographical weight behind it is undeniable.</div>
+    <div class="tags"><span class="tag">biography</span><span class="tag">methodology</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html">EWD 340</a> · "The Humble Programmer" (1972)</div>
+    <div class="entry-title">The Cigarette Argument</div>
+    <blockquote>They silence their doubts by observing how many of these machines have been sold, and derive from that observation the false sense of security that, after all, the design cannot have been that bad. But upon closer inspection, that line of defense has the same convincing strength as the argument that cigarette smoking must be healthy because so many people do it.</blockquote>
+    <div class="commentary">Dijkstra is talking about the IBM System/360 family without naming it, but the argument form is eternal. "Millions of people use JavaScript, so it can't be that bad." "Every company uses Jira, so it must work." Popularity is not quality, and market dominance is not vindication.</div>
+    <div class="tags"><span class="tag">industry</span><span class="tag">wit</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html">EWD 340</a> · "The Humble Programmer" (1972)</div>
+    <div class="entry-title">PL/I: the 7000-Button Cockpit</div>
+    <blockquote>Using PL/1 must be like flying a plane with 7000 buttons, switches and handles to manipulate in the cockpit. I absolutely fail to see how we can keep our growing programs firmly within our intellectual grip when by its sheer baroqueness the programming language — our basic tool, mind you! — already escapes our intellectual control.</blockquote>
+    <div class="commentary">The language is PL/I, but the description fits C++, or modern Java with its sprawl of annotations, or any sufficiently "enterprise" framework. If your tool is too complex to hold in your head, you cannot reason about what it will do — and you are building on sand.</div>
+    <div class="tags"><span class="tag">languages</span><span class="tag">complexity</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-source"><a href="https://www.cs.virginia.edu/~evans/cs655/readings/ewd498.html">EWD 498</a> · "How do we tell truths that might hurt?" (1975)</div>
+    <div class="entry-title">The Silence of the Scientists</div>
+    <blockquote>Sometimes we discover unpleasant truths. Whenever we do so, we are in difficulties: suppressing them is scientifically dishonest, so we must tell them, but telling them, however, will fire back on us. If the truths are sufficiently impalatable, our audience is psychically incapable of accepting them and we will be written off as totally unrealistic, hopelessly idealistic, dangerously revolutionary, foolishly gullible or what have you.</blockquote>
+    <div class="commentary">The opening of EWD 498 — and the frame for all of Dijkstra's polemical writing. He understood that telling the truth about the state of the industry was a losing proposition, and he did it anyway, for thirty years. The courage is worth noting even if the tone sometimes grated.</div>
+    <div class="tags"><span class="tag">biography</span><span class="tag">responsibility</span></div>
+  </div>
+
+  <div class="entry">
     <div class="entry-source"><a href="https://www.cs.virginia.edu/~evans/cs655/readings/ewd498.html">EWD 498</a> · "How do we tell truths that might hurt?" (1975)</div>
     <div class="entry-title">The Postscript</div>
     <blockquote>PS. If the conjecture "You would rather that I had not disturbed you by sending you this." is correct, you may add it to the list of uncomfortable truths.</blockquote>
@@ -489,7 +657,8 @@
 
 <footer>
   All EWD papers are available at the <a href="https://www.cs.utexas.edu/~EWD/">E.W. Dijkstra Archive</a> at the University of Texas at Austin.<br>
-  Compiled from papers spanning 1968–2001 · Edsger Wybe Dijkstra (1930–2002)
+  Compiled from papers spanning 1968–2001 · Edsger Wybe Dijkstra (1930–2002)<br>
+  Including EWD 249, 303, 340, 469, 498, 540, 667, 709, 896, 898, 1036, 1058, 1175, 1213, 1243a, 1284, 1305
 </footer>
 
 </div>
